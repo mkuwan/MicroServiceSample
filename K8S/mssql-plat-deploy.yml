@@ -1,0 +1,88 @@
+# チートリスト https://kubernetes.io/ja/docs/reference/kubectl/cheatsheet/ 
+
+# kubectl apply -f mssql-plat-deploy.yml
+# kubectl get services
+# kubectl get pods
+# kubectl get pods -o wide
+# kubectl delete pods mssql-0 --grace-period=0 --force
+# kubectl get nodes
+# kubectl get ns
+# kubectl delete all  --all -n mssql
+
+# kubectl create secret generic mssql --from-literal=MSSQL_SA_PASSWORD="SQL_P@s5W0RD"
+# kubectl delete secret mssql
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mssql
+spec:
+  serviceName: "mssql"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      securityContext:
+        fsGroup: 10001
+      containers:
+      - name: mssql # container name within the pod.
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+        - containerPort: 1433
+          name: tcpsql
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_ENABLE_HADR
+          value: "1"
+        - name: MSSQL_AGENT_ENABLED
+          value: "1"
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql
+              key: MSSQL_SA_PASSWORD
+        volumeMounts:
+        - name: mssql
+          mountPath: "/var/opt/mssql"
+  volumeClaimTemplates:
+    - metadata:
+        name: mssql
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 300Mi  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mssql
+  ports:
+  - name: mssql
+    protocol: TCP
+    port: 1433
+    targetPort: 1433
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: mssql
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433

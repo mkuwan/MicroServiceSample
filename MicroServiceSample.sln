@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformService", "PlatformService\PlatformService.csproj", "{D3FC6BC6-0AC6-499D-81DF-400D59559ABC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{8FA79FB4-314A-412E-9D81-D85B8014D7CC}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\commands-deploy.yml = K8S\commands-deploy.yml
+		K8S\ingress-nginx-deploy.yml = K8S\ingress-nginx-deploy.yml
+		K8S\ingress-srv.yml = K8S\ingress-srv.yml
+		K8S\mssql-plat-deploy.yml = K8S\mssql-plat-deploy.yml
+		K8S\platforms-deploy.yml = K8S\platforms-deploy.yml
+		K8S\platforms-np-srv.yml = K8S\platforms-np-srv.yml
+		K8S\rabbitmq-deploy.yml = K8S\rabbitmq-deploy.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandService", "CommandService\CommandService.csproj", "{766B3001-A8EF-4D73-A0EE-486F57C81484}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{FE4535EB-A87F-4953-BFD7-D8A28015C9D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3FC6BC6-0AC6-499D-81DF-400D59559ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FC6BC6-0AC6-499D-81DF-400D59559ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FC6BC6-0AC6-499D-81DF-400D59559ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FC6BC6-0AC6-499D-81DF-400D59559ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766B3001-A8EF-4D73-A0EE-486F57C81484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766B3001-A8EF-4D73-A0EE-486F57C81484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766B3001-A8EF-4D73-A0EE-486F57C81484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766B3001-A8EF-4D73-A0EE-486F57C81484}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93D4B0D6-4562-4655-8003-5FE7D6D69C2A}
+	EndGlobalSection
+EndGlobal

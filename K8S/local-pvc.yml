@@ -1,0 +1,22 @@
+# kubectl apply -f local-pvc.yml
+# kubectl get pvc
+# kubectl get storageclass
+# kubectl create secret generic mssql --from-literal=SA_PASSWORD="p@55wOrd"  
+# kubectl delete secret mssql
+
+# kubectl create ns mssql
+# kubectl create secret generic mssql --from-literal=MSSQL_SA_PASSWORD="SQL_P@s5W0RD" -n mssql
+# kubectl delete secret mssql -n mssql
+
+# 今は使わず、mssql-plat-deploy.ymlで同時に作成しています
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mssql-claim
+spec:
+  resources:
+    requests:
+      storage: 200Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany

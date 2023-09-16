@@ -1,0 +1,18 @@
+# NodePort
+
+# kubectl apply -f platforms-np-srv.yml
+# kubectl get services
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: platformnpservice-srv
+spec:
+  type: NodePort
+  selector:
+    app: platformservice
+  ports:
+  - name: platformservice
+    protocol: TCP
+    port: 80
+    targetPort : 80

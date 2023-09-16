@@ -1,0 +1,45 @@
+# kubectl apply -f commands-deploy.yml
+# kubectl get deployments
+# kubectl get pods
+# kubectl get services
+# kubectl delete deployment commands-deploy
+# kubectl rollout restart deployment commands-deploy
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commands-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commandservice
+  template:
+    metadata:
+      labels:
+        app: commandservice
+    spec:
+      containers:
+      - name: commandservice
+        image: mkuwan/commandservice:latest
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: commands-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: commandservice
+  ports:
+  - name: commandservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
