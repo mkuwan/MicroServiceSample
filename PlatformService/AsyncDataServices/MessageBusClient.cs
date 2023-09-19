@@ -65,7 +65,7 @@ public class MessageBusClient: IMessageBusClient
     {
         var body = Encoding.UTF8.GetBytes(message);
 
-        //for (int i = 1; i < 201; i++)
+        //for (int i = 1; i < 10001; i++)
         //{
         //    _channel.BasicPublish(exchange: "trigger",
         //        routingKey: string.Empty,
@@ -73,15 +73,25 @@ public class MessageBusClient: IMessageBusClient
         //        body: body);
         //    Console.WriteLine($"RabbitMq BasicPublish {i}回目");
         //}
+
+        //for (int i = 0; i < 100001; i++)
+        //{
+        //    _channel2.BasicPublish(exchange: "kiss",
+        //        routingKey: "sexy",
+        //        basicProperties: null,
+        //        body: body);
+        //    Console.WriteLine($"RabbitMq BasicPublish kiss {i}回目");
+        //}
+
         _channel.BasicPublish(exchange: "trigger",
             routingKey: string.Empty,
             basicProperties: null,
             body: body);
 
-        //_channel2.BasicPublish(exchange: "kiss",
-        //    routingKey: "sexy",
-        //    basicProperties: null,
-        //    body: body);
+        _channel2.BasicPublish(exchange: "kiss",
+            routingKey: "sexy",
+            basicProperties: null,
+            body: body);
 
         Console.WriteLine($">> We have sent {message}");
     }

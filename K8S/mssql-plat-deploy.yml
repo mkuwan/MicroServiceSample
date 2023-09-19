@@ -2,6 +2,7 @@
 
 # kubectl apply -f mssql-plat-deploy.yml
 # kubectl get services
+# kubectl get StatefulSet
 # kubectl get pods
 # kubectl get pods -o wide
 # kubectl delete pods mssql-0 --grace-period=0 --force
@@ -11,6 +12,7 @@
 
 # kubectl create secret generic mssql --from-literal=MSSQL_SA_PASSWORD="SQL_P@s5W0RD"
 # kubectl delete secret mssql
+# kubectl rollout restart StatefulSet mssql
 
 apiVersion: apps/v1
 kind: StatefulSet

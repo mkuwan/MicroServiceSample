@@ -33,3 +33,10 @@ spec:
             name: commands-clusterip-service
             port: 
               number: 80
+      - pathType: Prefix
+        path: /mssql
+        backend:
+          service:
+            name: mssql-clusterip-service
+            port: 
+              number: 1443

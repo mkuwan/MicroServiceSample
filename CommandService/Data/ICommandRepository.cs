@@ -13,6 +13,8 @@ public interface ICommandRepository
 
     bool PlatformExits(int platformId);
 
+    bool ExternalPlatformExist(int externalPlatformId);
+
 
     // Commands
     IEnumerable<Command> GetCommandsForPlatform(int platformId);
